@@ -108,8 +108,6 @@ export class AppComponent {
     }
     let numberSort = (key) => {
       return (a,b) => {
-        console.log(a[key]);
-        console.log(b[key]);
         return b[key] - a[key];
       }
     }
@@ -123,7 +121,6 @@ export class AppComponent {
             default: sortFunc=numberSort(key); break;
           }
           let answer=sortFunc(a,b);
-          console.log(key+' ('+typeof(this.list[0][key])+'):'+answer);
           if (answer != 0) {
             return answer;
           }
