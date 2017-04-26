@@ -8,9 +8,25 @@ import { Http } from '@angular/http';
 })
 export class AppComponent {
 
+  CSVFiles = [
+    {
+      url: "https://s3-us-west-2.amazonaws.com/optimism-wslcb/WSLCB+2016.csv",
+      name: "2016"
+    },
+    {
+      url: "https://s3-us-west-2.amazonaws.com/optimism-wslcb/WSLCB+2015.csv",
+      name: "2015"
+    },
+    {
+      url: "https://s3-us-west-2.amazonaws.com/optimism-wslcb/WSLCB+2014.csv",
+      name: "2014"
+    },
+  ];
+
   ui={
     title: "",
     orderby: 'Net Production',
+    dataset: this.CSVFiles[2],
   }
   sortkeys: string[];
   table:{}[] = [];
@@ -20,7 +36,11 @@ export class AppComponent {
   constructor(private http:Http) { }
 
   ngAfterViewInit() {
-    this.http.get("https://s3-us-west-2.amazonaws.com/optimism-wslcb/WSLCB+2016.csv").subscribe(
+    this.getData();
+  }
+
+  getData() {
+    this.http.get(this.ui.dataset.url).subscribe(
       (data) => {
         let csv=data.text().replace(/[^a-zA-Z0-9 \.,]/,'');
         let lines=csv.split(/\r\n/);

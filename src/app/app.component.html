@@ -1,5 +1,12 @@
 <!-- <pre>{{breweries|json}}</pre> -->
 <div class="container">
+  <div class="pull-right">
+    <md-select placeholder="Year" (change)="getData()" [(ngModel)]="ui.dataset">
+      <md-option *ngFor="let file of CSVFiles" [value]="file" >
+        {{ file.name }}
+      </md-option>
+    </md-select>
+  </div>
 <h1>Washington State Brewery Production</h1>
 <div><small>{{ui.title}}</small></div>
 <div><small>{{table.length}} breweries</small></div>
