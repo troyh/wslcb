@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
-import {MdOptionModule,MdSelectModule} from '@angular/material';
+import {MdOptionModule,MdSelectModule,MdInputContainer} from '@angular/material';
 
 @NgModule({
   declarations: [

@@ -26,7 +26,7 @@ export class AppComponent {
   ui={
     title: "",
     orderby: 'Net Production',
-    dataset: this.CSVFiles[2],
+    dataset: this.CSVFiles[0],
   }
   sortkeys: string[];
   table:{}[] = [];
