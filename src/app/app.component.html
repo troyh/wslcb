@@ -1,3 +1,55 @@
-<h1>
-  {{title}}
-</h1>
+<!-- <pre>{{breweries|json}}</pre> -->
+<div class="container">
+<h1>Washington State Brewery Production</h1>
+<div><small>{{ui.title}}</small></div>
+<div><small>{{table.length}} breweries</small></div>
+<div class="text-right">
+  <md-select placeholder="Order by" (change)="sortList($event.value)" [(ngModel)]="ui.orderby">
+    <md-option *ngFor="let sortkey of sortkeys" [value]="sortkey" >
+      {{ sortkey }}
+    </md-option>
+  </md-select>
+</div>
+<table class="table table-striped table-hover table-reponsive">
+  <thead class="thead-inverse">
+    <tr>
+      <th rowspan="2">#</th>
+      <th rowspan="2">Name</th>
+      <th rowspan="2">City</th>
+      <th rowspan="2">Net Production</th>
+      <th colspan="2" class="text-center">Distributor Sales by ABV<sup>1</sup></th>
+      <th colspan="2" class="text-center">Brewery Retail Sales by ABV<sup>2</sup></th>
+      <th colspan="2" class="text-center">Retail Sales by ABV<sup>3</sup></th>
+      <th rowspan="2">Military/ ICC/ Export</th>
+    </tr>
+    <tr>
+      <th>&gt;10%</th><th>&lt;10%</th>
+      <th>&gt;10%</th><th>&lt;10%</th>
+      <th>&gt;10%</th><th>&lt;10%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of table; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{row['Tradename']}}</td>
+      <td>{{row['Location City']}}</td>
+      <td class="text-right">{{row['Net Production']|number:'1.0-0'}}</td>
+      <td class="text-right">{{row['Distributor Sales Over']|number:'1.0-0'}}</td>
+      <td class="text-right">{{row['Distributor Sales Under']|number:'1.0-0'}}</td>
+      <td class="text-right">{{row['Brewery Retail Sales Over']|number:'1.0-0'}}</td>
+      <td class="text-right">{{row['Brewery Retail Sales Under']|number:'1.0-0'}}</td>
+      <td class="text-right">{{row['Retail Sales Over']|number:'1.0-0'}}</td>
+      <td class="text-right">{{row['Retail Sales Under']|number:'1.0-0'}}</td>
+      <td class="text-right">{{row['Military/ICC/Export']|number:'1.0-0'}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Data comes from the Washington State Liquor Control Board (WSLCB) from a Freedom of Information Act request. All numbers are in beer barrels (BBLs).</p>
+
+<b>Notes:</b>
+<p><sup>1</sup>Volume sold to a distributor.</p>
+<p><sup>2</sup>Volume sold at the brewery location direct to customers.</p>
+<p><sup>3</sup>Volume sold to other Washington retailers (grocery stores, restaurants, bars, etc.).</p>
+
+</div>
